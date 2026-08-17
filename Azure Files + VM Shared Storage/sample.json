@@ -1,0 +1,120 @@
+{
+  "terraform": {
+    "required_providers": {
+      "azurerm": {
+        "source": "hashicorp/azurerm",
+        "version": "~> 3.0"
+      }
+    }
+  },
+  "provider": {
+    "azurerm": {
+      "features": {}
+    }
+  },
+  "resource": {
+    "azurerm_virtual_network": {
+      "vnet_1": {
+        "name": "howsit",
+        "location": "centralindia",
+        "resource_group_name": "resouce-group-testing",
+        "address_space": [
+          "10.38.0.0/16"
+        ],
+        "tags": {
+          "pipeline_id": "3825",
+          "pipeline_version": "1",
+          "component_id": "azure-vnet-1",
+          "platform": "infraglide"
+        }
+      }
+    },
+    "azurerm_user_assigned_identity": {
+      "iam_2": {
+        "name": "mi47",
+        "location": "centralindia",
+        "resource_group_name": "resouce-group-testing",
+        "tags": {
+          "pipeline_id": "3825",
+          "pipeline_version": "1",
+          "component_id": "azure-iam-1",
+          "platform": "infraglide"
+        }
+      }
+    },
+    "azurerm_storage_account": {
+      "storage_3": {
+        "resource_group_name": "resouce-group-testing",
+        "name": "howsittt47",
+        "location": "centralindia",
+        "account_tier": "Standard",
+        "account_replication_type": "GRS",
+        "account_kind": "StorageV2",
+        "https_traffic_only_enabled": true,
+        "tags": {
+          "pipeline_id": "3825",
+          "pipeline_version": "1",
+          "component_id": "azure-storage-1",
+          "platform": "infraglide"
+        }
+      }
+    },
+    "azurerm_storage_share": {
+      "files_4": {
+        "storage_account_name": "skilltecttesting",
+        "name": "howsit",
+        "quota": 100,
+        "access_tier": "TransactionOptimized",
+        "metadata": {
+          "pipeline_id": "3825",
+          "pipeline_version": "1",
+          "component_id": "azure-files-1",
+          "platform": "infraglide"
+        }
+      }
+    },
+    "azurerm_linux_virtual_machine": {
+      "vm_linux_5": {
+        "name": "howsitvnet",
+        "location": "westeurope",
+        "resource_group_name": "resouce-group-testing",
+        "size": "Standard_F1alds_v7",
+        "admin_username": "skilltect",
+        "admin_password": "Core@12345678",
+        "disable_password_authentication": false,
+        "os_disk": {
+          "caching": "ReadWrite",
+          "disk_size_gb": 30,
+          "storage_account_type": "Premium_LRS",
+          "write_accelerator_enabled": false
+        },
+        "network_interface_ids": [
+          "/subscriptions/cd4b0862-e963-435b-81a9-4d54e70b8f3a/resourceGroups/resouce-group-testing/providers/Microsoft.Network/networkInterfaces/Europe"
+        ],
+        "termination_notification": {
+          "enabled": false
+        },
+        "os_image_notification": {
+          "timeout": "PT15M"
+        },
+        "source_image_reference": {
+          "publisher": "Canonical",
+          "offer": "0001-com-ubuntu-server-jammy",
+          "sku": "22_04-lts-gen2",
+          "version": "latest"
+        },
+        "tags": {
+          "pipeline_id": "3825",
+          "pipeline_version": "1",
+          "component_id": "azure-vm-1",
+          "platform": "infraglide"
+        },
+        "depends_on": [
+          "azurerm_user_assigned_identity.iam_2",
+          "azurerm_storage_account.storage_3",
+          "azurerm_storage_share.files_4"
+        ]
+      }
+    }
+  }
+}

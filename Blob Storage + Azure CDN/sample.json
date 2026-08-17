@@ -1,0 +1,44 @@
+{
+  "terraform": {
+    "required_providers": {
+      "azurerm": {
+        "source": "hashicorp/azurerm",
+        "version": "~> 3.0"
+      }
+    }
+  },
+  "provider": {
+    "azurerm": {
+      "features": {}
+    }
+  },
+  "resource": {
+    "azurerm_cdn_profile": {
+      "cdn_1": {
+        "location": "centralindia",
+        "name": "howsitcdn",
+        "resource_group_name": "resouce-group-testing",
+        "sku": "Standard_Microsoft",
+        "tags": {
+          "pipeline_id": "3787",
+          "pipeline_version": "1",
+          "component_id": "azure-cdn-1",
+          "platform": "infraglide"
+        }
+      }
+    },
+    "azurerm_storage_container": {
+      "blob_2": {
+        "name": "howsitblob",
+        "storage_account_name": "skilltecttesting",
+        "container_access_type": "private",
+        "metadata": {
+          "pipeline_id": "3787",
+          "pipeline_version": "1",
+          "component_id": "azure-blob-1780985948201",
+          "platform": "infraglide"
+        }
+      }
+    }
+  }
+}

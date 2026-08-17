@@ -1,0 +1,60 @@
+{
+  "terraform": {
+    "required_providers": {
+      "azurerm": {
+        "source": "hashicorp/azurerm",
+        "version": "~> 3.0"
+      }
+    }
+  },
+  "provider": {
+    "azurerm": {
+      "features": {}
+    }
+  },
+  "resource": {
+    "azurerm_user_assigned_identity": {
+      "iam_1": {
+        "name": "howsit",
+        "location": "centralindia",
+        "resource_group_name": "resouce-group-testing",
+        "tags": {
+          "pipeline_id": "3824",
+          "pipeline_version": "1",
+          "component_id": "azure-iam-1",
+          "platform": "infraglide"
+        }
+      }
+    },
+    "azurerm_storage_account": {
+      "storage_2": {
+        "resource_group_name": "resouce-group-testing",
+        "name": "howsitsacc",
+        "location": "centralindia",
+        "account_tier": "Standard",
+        "account_replication_type": "GRS",
+        "account_kind": "StorageV2",
+        "https_traffic_only_enabled": true,
+        "tags": {
+          "pipeline_id": "3824",
+          "pipeline_version": "1",
+          "component_id": "azure-storage-1",
+          "platform": "infraglide"
+        }
+      }
+    },
+    "azurerm_storage_container": {
+      "blob_3": {
+        "name": "blobbb47",
+        "storage_account_name": "skilltecttesting",
+        "container_access_type": "private",
+        "metadata": {
+          "pipeline_id": "3824",
+          "pipeline_version": "1",
+          "component_id": "azure-blob-1",
+          "platform": "infraglide"
+        }
+      }
+    }
+  }
+}

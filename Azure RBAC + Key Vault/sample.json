@@ -1,0 +1,50 @@
+{
+  "terraform": {
+    "required_providers": {
+      "azurerm": {
+        "source": "hashicorp/azurerm",
+        "version": "~> 3.0"
+      }
+    }
+  },
+  "provider": {
+    "azurerm": {
+      "features": {}
+    }
+  },
+  "resource": {
+    "azurerm_key_vault": {
+      "keyvault_1": {
+        "location": "centralindia",
+        "name": "howsitkey",
+        "resource_group_name": "resouce-group-testing",
+        "sku_name": "standard",
+        "tenant_id": "a8c13116-2232-42ef-bc1c-d45a98eaa244",
+        "tags": {
+          "pipeline_id": "3745",
+          "pipeline_version": "1",
+          "component_id": "azure-kv-1",
+          "platform": "infraglide"
+        }
+      }
+    },
+    "azurerm_monitor_diagnostic_setting": {
+      "monitor_2": {
+        "name": "howsit",
+        "storage_account_id": "/subscriptions/cd4b0862-e963-435b-81a9-4d54e70b8f3a/resourceGroups/resouce-group-testing/providers/Microsoft.Storage/storageAccounts/skilltecttesting",
+        "target_resource_id": "/subscriptions/cd4b0862-e963-435b-81a9-4d54e70b8f3a/resourceGroups/resouce-group-testing/providers/Microsoft.Network/loadBalancers/loadbalancer",
+        "enabled_log": {
+          "category": "LoadBalancerHealthEvent",
+          "category_group": "allLogs"
+        },
+        "metric": {
+          "category": "AllMetrics",
+          "enabled": "true"
+        },
+        "depends_on": [
+          "azurerm_key_vault.keyvault_1"
+        ]
+      }
+    }
+  }
+}

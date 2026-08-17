@@ -1,0 +1,131 @@
+{
+  "terraform": {
+    "required_providers": {
+      "azurerm": {
+        "source": "hashicorp/azurerm",
+        "version": "~> 3.0"
+      }
+    }
+  },
+  "provider": {
+    "azurerm": {
+      "features": {}
+    }
+  },
+  "resource": {
+    "azurerm_virtual_network": {
+      "vnet_1": {
+        "name": "howsitvnet",
+        "location": "centralindia",
+        "resource_group_name": "resouce-group-testing",
+        "address_space": [
+          "10.30.0.0/16"
+        ],
+        "tags": {
+          "pipeline_id": "3833",
+          "pipeline_version": "1",
+          "component_id": "azure-vnet-1",
+          "platform": "infraglide"
+        }
+      }
+    },
+    "azurerm_user_assigned_identity": {
+      "iam_2": {
+        "name": "howsit",
+        "location": "centralindia",
+        "resource_group_name": "resouce-group-testing",
+        "tags": {
+          "pipeline_id": "3833",
+          "pipeline_version": "1",
+          "component_id": "azure-iam-1",
+          "platform": "infraglide"
+        }
+      }
+    },
+    "azurerm_network_security_group": {
+      "nsg_3": {
+        "location": "centralindia",
+        "name": "howsit",
+        "resource_group_name": "resouce-group-testing",
+        "tags": {
+          "pipeline_id": "3833",
+          "pipeline_version": "1",
+          "component_id": "azure-nsg-1",
+          "platform": "infraglide"
+        }
+      }
+    },
+    "azurerm_subnet": {
+      "subnet_4": {
+        "name": "howsit",
+        "address_prefixes": [
+          "10.20.1.0/24"
+        ],
+        "virtual_network_name": "virtualhoho",
+        "resource_group_name": "resouce-group-testing",
+        "depends_on": [
+          "azurerm_network_security_group.nsg_3"
+        ]
+      }
+    },
+    "azurerm_linux_virtual_machine": {
+      "vm_linux_5": {
+        "name": "vmlinuxx",
+        "location": "westeurope",
+        "resource_group_name": "resouce-group-testing",
+        "size": "Standard_F1alds_v7",
+        "admin_username": "howsit",
+        "admin_password": "Howsit@12345",
+        "disable_password_authentication": false,
+        "os_disk": {
+          "caching": "ReadWrite",
+          "disk_size_gb": 30,
+          "storage_account_type": "Premium_LRS",
+          "write_accelerator_enabled": false
+        },
+        "network_interface_ids": [
+          "/subscriptions/cd4b0862-e963-435b-81a9-4d54e70b8f3a/resourceGroups/resouce-group-testing/providers/Microsoft.Network/networkInterfaces/Europe"
+        ],
+        "termination_notification": {
+          "enabled": false
+        },
+        "os_image_notification": {
+          "timeout": "PT15M"
+        },
+        "source_image_reference": {
+          "publisher": "Canonical",
+          "offer": "0001-com-ubuntu-server-focal",
+          "sku": "20_04-lts-gen2",
+          "version": "latest"
+        },
+        "tags": {
+          "pipeline_id": "3833",
+          "pipeline_version": "1",
+          "component_id": "azure-vm-1",
+          "platform": "infraglide"
+        },
+        "depends_on": [
+          "azurerm_user_assigned_identity.iam_2",
+          "azurerm_subnet.subnet_4"
+        ]
+      }
+    },
+    "azurerm_monitor_diagnostic_setting": {
+      "monitor_6": {
+        "name": "howsit",
+        "target_resource_id": "/subscriptions/cd4b0862-e963-435b-81a9-4d54e70b8f3a/resourceGroups/resouce-group-testing/providers/Microsoft.Network/loadBalancers/loadbalancer",
+        "enabled_log": {
+          "category": "LoadBalancerHealthEvent",
+          "category_group": "allLogs"
+        },
+        "metric": {
+          "enabled": true,
+          "category": "AllMetrics"
+        },
+        "depends_on": [
+          "azurerm_linux_virtual_machine.vm_linux_5"
+        ]
+      }
+    }
+  }
+}

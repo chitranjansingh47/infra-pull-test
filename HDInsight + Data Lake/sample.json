@@ -1,0 +1,116 @@
+{
+  "terraform": {
+    "required_providers": {
+      "azurerm": {
+        "source": "hashicorp/azurerm",
+        "version": "~> 3.0"
+      }
+    }
+  },
+  "provider": {
+    "azurerm": {
+      "features": {}
+    }
+  },
+  "resource": {
+    "azurerm_user_assigned_identity": {
+      "iam_1": {
+        "name": "howsit",
+        "location": "centralindia",
+        "resource_group_name": "resouce-group-testing",
+        "tags": {
+          "pipeline_id": "3831",
+          "pipeline_version": "1",
+          "component_id": "azure-iam-1",
+          "platform": "infraglide"
+        }
+      }
+    },
+    "azurerm_storage_account": {
+      "storage_2": {
+        "resource_group_name": "resouce-group-testing",
+        "name": "howsssit",
+        "location": "centralindia",
+        "account_tier": "Standard",
+        "account_replication_type": "GRS",
+        "account_kind": "StorageV2",
+        "https_traffic_only_enabled": true,
+        "tags": {
+          "pipeline_id": "3831",
+          "pipeline_version": "1",
+          "component_id": "azure-storage-1",
+          "platform": "infraglide"
+        }
+      },
+      "hdinsight_3_storage": {
+        "name": "skilltect",
+        "resource_group_name": "resouce-group-testing",
+        "location": "centralindia",
+        "account_tier": "Standard",
+        "account_replication_type": "LRS",
+        "tags": {
+          "pipeline_id": "3831",
+          "pipeline_version": "1",
+          "component_id": "azure-hdinsight-1",
+          "platform": "infraglide"
+        }
+      }
+    },
+    "azurerm_hdinsight_hadoop_cluster": {
+      "hdinsight_3": {
+        "name": "hdinsightt",
+        "resource_group_name": "resouce-group-testing",
+        "location": "centralindia",
+        "cluster_version": "4.0",
+        "tier": "Standard",
+        "component_version": {
+          "hadoop": "3.2"
+        },
+        "gateway": {
+          "username": "howsit",
+          "password": "Core@1234567"
+        },
+        "storage_account": {
+          "storage_container_id": "${azurerm_storage_container.hdinsight_3_container.id}",
+          "storage_account_key": "${azurerm_storage_account.hdinsight_3_storage.primary_access_key}",
+          "is_default": true
+        },
+        "roles": {
+          "head_node": {
+            "vm_size": "Standard_D3_V2",
+            "username": "howsiiiit",
+            "password": "Core@1234657"
+          },
+          "worker_node": {
+            "vm_size": "Standard_D3_V2",
+            "username": "workerrr",
+            "password": "Skilltect@123456",
+            "target_instance_count": 2
+          },
+          "zookeeper_node": {
+            "vm_size": "Standard_D3_V2",
+            "username": "useerrname",
+            "password": "Skilltect@123456"
+          }
+        },
+        "tags": {
+          "pipeline_id": "3831",
+          "pipeline_version": "1",
+          "component_id": "azure-hdinsight-1",
+          "platform": "infraglide"
+        },
+        "depends_on": [
+          "azurerm_user_assigned_identity.iam_1",
+          "azurerm_storage_account.storage_2"
+        ]
+      }
+    },
+    "azurerm_storage_container": {
+      "hdinsight_3_container": {
+        "name": "storageecontainer",
+        "storage_account_name": "${azurerm_storage_account.hdinsight_3_storage.name}",
+        "container_access_type": "private"
+      }
+    }
+  }
+}
