@@ -1,0 +1,166 @@
+{
+  "id": 3671,
+  "name": "regorious",
+  "description": "Imported from chitranjansingh47/infra-pull-test (version2)",
+  "provider": "gcp",
+  "region": "us-central1",
+  "version": 1,
+  "components": [
+    {
+      "id": "container-region-1786082192195",
+      "data": {
+        "name": "region-1kyv32",
+        "type": "container-region",
+        "label": "us-central1",
+        "config": {
+          "region": "us-central1",
+          "projectId": "infraglide-testing",
+          "regionName": "us-central1"
+        },
+        "parentId": null,
+        "nestingLevel": 0,
+        "isConfigValid": true,
+        "deploymentStatus": "success"
+      },
+      "type": "container",
+      "style": {
+        "width": 1000,
+        "height": 800
+      },
+      "position": {
+        "x": 159.4999771118164,
+        "y": 100.16926765441895
+      }
+    },
+    {
+      "id": "container-zone-1786082194654",
+      "data": {
+        "name": "zone-ie13kl",
+        "type": "container-zone",
+        "label": "us-central1-a",
+        "config": {
+          "zone": "us-central1-a",
+          "region": "us-central1"
+        },
+        "parentId": "container-region-1786082192195",
+        "nestingLevel": 1,
+        "isConfigValid": true,
+        "deploymentStatus": "success",
+        "hasIncompleteConfig": false,
+        "configModifiedByUser": true
+      },
+      "type": "container",
+      "style": {
+        "width": 400,
+        "height": 600
+      },
+      "position": {
+        "x": 201.2356773480268,
+        "y": 196.4240607701912
+      }
+    },
+    {
+      "id": "gcp-disk-1786082559647",
+      "data": {
+        "name": "GCP-DISK-qk40i6",
+        "type": "gcp-disk",
+        "config": {
+          "size": 100,
+          "zone": "us-central1-a",
+          "labels": {
+            "owner": "kamal"
+          },
+          "region": "us-central1",
+          "diskName": "presistance-disk-test-001",
+          "diskType": "pd-balanced",
+          "projectId": "infraglide-testing",
+          "encryption": "Google-managed"
+        },
+        "parentId": "container-zone-1786082194654",
+        "nestingLevel": 2,
+        "componentType": "gcp-disk",
+        "isConfigValid": true,
+        "validationError": false,
+        "deploymentStatus": "success",
+        "hasIncompleteConfig": false,
+        "configModifiedByUser": true
+      },
+      "type": "cloudComponent",
+      "style": {},
+      "position": {
+        "x": 357.94051707308984,
+        "y": 565.1404949752297
+      }
+    },
+    {
+      "id": "gcp-compute-1786082728678",
+      "data": {
+        "name": "GCP-COMPUTE-b0cigm",
+        "type": "gcp-compute",
+        "config": {
+          "zone": "us-central1-a",
+          "region": "us-central1",
+          "series": "E2",
+          "osFamily": "debian",
+          "projectId": "infraglide-testing",
+          "machineType": "e2-micro",
+          "accessScopes": "https://www.googleapis.com/auth/devstorage.read_write",
+          "bootDiskSize": 20,
+          "bootDiskType": "pd-balanced",
+          "instanceName": "compute-eng-instance-test-001",
+          "shieldedVtpm": true,
+          "bootDiskImage": "debian-12-bookworm-arm64-v20260804",
+          "enableOsLogin": false,
+          "machineFamily": "General-purpose",
+          "enableOpsAgent": false,
+          "serviceAccount": "infraglide-testing@appspot.gserviceaccount.com",
+          "_connectedDiskId": "gcp-disk-1786082559647",
+          "automaticRestart": true,
+          "networkInterfaces": [
+            {
+              "network": "vpc-test-final-1",
+              "nicType": "VIRTIO_NET",
+              "externalIp": "None",
+              "internalIp": "",
+              "subnetwork": "vpc-subnet-final-2",
+              "ipStackType": "IPV4_ONLY",
+              "externalIpName": ""
+            }
+          ],
+          "onHostMaintenance": "MIGRATE",
+          "provisioningModel": "STANDARD",
+          "bootDiskAutoDelete": true,
+          "shieldedSecureBoot": false,
+          "blockProjectSshKeys": false,
+          "enableCpuOvercommit": false,
+          "allowStoppingForUpdate": true,
+          "enableIntegrityMonitoring": true
+        },
+        "parentId": "container-zone-1786082194654",
+        "nestingLevel": 2,
+        "componentType": "gcp-compute",
+        "isConfigValid": true,
+        "validationError": false,
+        "deploymentStatus": "success",
+        "hasIncompleteConfig": false,
+        "configModifiedByUser": true
+      },
+      "type": "cloudComponent",
+      "style": {},
+      "position": {
+        "x": 360.55432719942996,
+        "y": 381.08782154251026
+      }
+    }
+  ],
+  "connections": [
+    {
+      "id": "reactflow__edge-gcp-disk-1786082559647top-source-gcp-compute-1786082728678bottom-target",
+      "type": "deletable",
+      "source": "gcp-disk-1786082559647",
+      "target": "gcp-compute-1786082728678"
+    }
+  ],
+  "publishedAt": "2026-08-22T07:49:48.097Z",
+  "publishedBy": "demo"
+}
