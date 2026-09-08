@@ -1,0 +1,165 @@
+{
+  "id": 3852,
+  "name": "region-city-fix-kk",
+  "description": "Pipeline region-city-fix-kk version v1",
+  "provider": "gcp",
+  "region": "us-central1",
+  "version": 1,
+  "components": [
+    {
+      "id": "container-region-1788592752006",
+      "data": {
+        "name": "region-cihyuk",
+        "type": "container-region",
+        "label": "us-central1",
+        "config": {
+          "region": "us-central1",
+          "projectId": "concrete-craft-499613-a6",
+          "regionName": "us-central1"
+        },
+        "parentId": null,
+        "isTainted": false,
+        "scalingMode": "none",
+        "nestingLevel": 0,
+        "isConfigValid": true,
+        "deploymentStatus": "destroyed"
+      },
+      "type": "container",
+      "style": {
+        "width": 1000,
+        "height": 800
+      },
+      "position": {
+        "x": 32.92701877526899,
+        "y": 163.49942080836712
+      }
+    },
+    {
+      "id": "container-zone-1788592754397",
+      "data": {
+        "name": "zone-0ewt75",
+        "type": "container-zone",
+        "label": "us-central1-a",
+        "config": {
+          "zone": "us-central1-a",
+          "region": "us-central1"
+        },
+        "parentId": "container-region-1788592752006",
+        "isTainted": false,
+        "scalingMode": "none",
+        "nestingLevel": 1,
+        "isConfigValid": true,
+        "deploymentStatus": "destroyed",
+        "hasIncompleteConfig": false,
+        "configModifiedByUser": true
+      },
+      "type": "container",
+      "style": {
+        "width": 400,
+        "height": 600
+      },
+      "position": {
+        "x": 236.3168234213893,
+        "y": 257.47599442917954
+      }
+    },
+    {
+      "id": "gcp-compute-1788592781620",
+      "data": {
+        "name": "GCP-COMPUTE-2ozo1y",
+        "type": "gcp-compute",
+        "config": {
+          "zone": "us-central1-a",
+          "region": "us-central1",
+          "series": "E2",
+          "osFamily": "debian",
+          "projectId": "concrete-craft-499613-a6",
+          "machineType": "e2-small",
+          "bootDiskSize": 20,
+          "bootDiskType": "pd-balanced",
+          "instanceName": "compute-instance-test-region",
+          "shieldedVtpm": true,
+          "bootDiskImage": "debian-12-bookworm-arm64-v20260902",
+          "enableOsLogin": true,
+          "machineFamily": "General-purpose",
+          "enableOpsAgent": false,
+          "automaticRestart": true,
+          "networkInterfaces": [
+            {
+              "network": "compute-disk-vpc",
+              "nicType": "VIRTIO_NET",
+              "externalIp": "None",
+              "subnetwork": "subnet-test-kamal",
+              "ipStackType": "IPV4_ONLY"
+            }
+          ],
+          "onHostMaintenance": "MIGRATE",
+          "provisioningModel": "STANDARD",
+          "bootDiskAutoDelete": true,
+          "shieldedSecureBoot": false,
+          "blockProjectSshKeys": false,
+          "enableCpuOvercommit": false,
+          "allowStoppingForUpdate": true,
+          "enableIntegrityMonitoring": true
+        },
+        "parentId": "container-zone-1788592754397",
+        "isTainted": false,
+        "scalingMode": "none",
+        "nestingLevel": 2,
+        "componentType": "gcp-compute",
+        "isConfigValid": true,
+        "validationError": false,
+        "deploymentStatus": "destroyed",
+        "hasIncompleteConfig": false,
+        "configModifiedByUser": true
+      },
+      "type": "cloudComponent",
+      "style": {},
+      "position": {
+        "x": 300.72360308240627,
+        "y": 374.42514697155246
+      }
+    },
+    {
+      "id": "gcp-storage-1788593867820",
+      "data": {
+        "name": "GCP-STORAGE-5437hi",
+        "type": "gcp-storage",
+        "config": {
+          "region": "us-central1",
+          "projectId": "concrete-craft-499613-a6",
+          "bucketName": "storage-bucket-test-001-kkg",
+          "locationType": "Region",
+          "encryptionType": "google-managed",
+          "objectVersioning": false,
+          "retentionEnabled": false,
+          "softDeletePolicy": false,
+          "storageClassMode": "defaultStorageClass",
+          "accessControlModel": "Uniform",
+          "defaultStorageClass": "STANDARD",
+          "crossBucketReplication": false,
+          "publicAccessPrevention": false
+        },
+        "parentId": "container-region-1788592752006",
+        "isTainted": false,
+        "scalingMode": "none",
+        "nestingLevel": 1,
+        "componentType": "gcp-storage",
+        "isConfigValid": true,
+        "validationError": false,
+        "deploymentStatus": "destroyed",
+        "hasIncompleteConfig": false,
+        "configModifiedByUser": true
+      },
+      "type": "cloudComponent",
+      "style": {},
+      "position": {
+        "x": 271.91004376037233,
+        "y": 510.39648462941625
+      }
+    }
+  ],
+  "connections": [],
+  "publishedAt": "2026-09-08T06:48:54.115Z",
+  "publishedBy": "demo"
+}
